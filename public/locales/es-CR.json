@@ -1,5 +1,26 @@
 {
   "pages": {
+    "login": {
+      "title": "Iniciar Sesión / Registrarse",
+      "loginCard": {
+        "header": "Iniciar Sesión",
+        "emailAddress": "Correo electrónico",
+        "password": "Contraseña",
+        "signInSubmit": "Iniciar Sesión",
+        "forgotPassword": "¿Olvidó su contraseña?",
+        "signUp": "¿No tenés cuenta aún? Regístrate"
+      }
+    },
+    "signUp": {
+      "title": "Registrarse",
+      "signUpCard": {
+        "header": "Registrarse",
+        "emailAddress": "Correo Electrónico",
+        "password": "Constraseña",
+        "signUpSubmit": "Registrarse",
+        "signIn": "¿Ya tenés cuenta? Inicia sesión"
+      }
+    },
     "home": {
       "title": "Inicio"
     },

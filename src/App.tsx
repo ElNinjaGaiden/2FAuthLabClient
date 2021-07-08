@@ -3,17 +3,18 @@ import { Provider } from 'react-redux';
 import {
   BrowserRouter as Router,
   Route,
-  Switch,
-  Link
+  Switch
 } from 'react-router-dom';
 import './App.css';
 
 // Components
 import Startup from './Startup';
 import Drawer from './components/drawer';
+import PrivateRoute from './components/privateRoute';
 
 // Views
 import Login from './views/login/login';
+import SignUp from './views/signUp/signUp';
 import Home from './views/home/home';
 import View2 from './views/view2';
 
@@ -28,9 +29,10 @@ function App() {
           <div id="app">
             <Drawer />
             <Switch>
-              <Route path="/login" exact component={Login} />
-              <Route path="/" exact component={Home} />
-              <Route path="/view2" component={View2} />
+              <Route path="/login" component={Login} />
+              <Route path="/signup" component={SignUp} />
+              <PrivateRoute path="/" exact component={Home} />
+              <PrivateRoute path="/view2" component={View2} />
             </Switch>
           </div>
         </Router>

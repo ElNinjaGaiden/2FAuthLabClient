@@ -14,7 +14,7 @@ const defaultState: LocalizationState = {
   languages: []
 }
 
-export default (state = defaultState, action: LocalizationAction): LocalizationState => {
+const reducer = (state = defaultState, action: LocalizationAction): LocalizationState => {
   switch (action.type) {
     case getType(localization.fetchLanguage.success):
       return {
@@ -35,3 +35,5 @@ export default (state = defaultState, action: LocalizationAction): LocalizationS
       return state;
   }
 }
+
+export default reducer;

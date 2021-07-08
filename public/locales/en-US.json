@@ -1,5 +1,26 @@
 {
   "pages": {
+    "login": {
+      "title": "Sign In / Sign Up",
+      "loginCard": {
+        "header": "Sign In",
+        "emailAddress": "Email Address",
+        "password": "Password",
+        "signInSubmit": "Sign In",
+        "forgotPassword": "Forgot your password?",
+        "signUp": "Don't have an account? Sign Up"
+      }
+    },
+    "signUp": {
+      "title": "Sign Up",
+      "signUpCard": {
+        "header": "Sign Up",
+        "emailAddress": "Email Address",
+        "password": "Password",
+        "signUpSubmit": "Sign Up",
+        "signIn": "Aldreay have an account? Sign In"
+      }
+    },
     "home": {
       "title": "Home"
     },

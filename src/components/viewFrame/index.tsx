@@ -13,6 +13,7 @@ import LanguageSelector from '../languageSelector';
 import MenuIcon from '@material-ui/icons/Menu';
 
 const mapStateToProps = (state: RootState) => ({
+  sessionStarted: () => selectors.session.sessionStarted(state.session),
   localize: (key: string) =>
     selectors.localization.localize(state.localization, key)
 });
@@ -22,12 +23,16 @@ const mapDispatchToProps = {
 };
 
 type Props = ReturnType<typeof mapStateToProps> &
-  typeof mapDispatchToProps & {
-    children: React.ReactNode,
-    title: string
-  }
+typeof mapDispatchToProps & {
+  children: React.ReactNode,
+  title: string
+}
 
-const ViewFrame: FunctionComponent<Props> = ({ localize, toggleMenu, children, title }) => {
+const ViewFrame: FunctionComponent<Props> = ({
+  toggleMenu,
+  children,
+  title,
+  sessionStarted }) => {
   
   function handleDrawerOpen() {
     toggleMenu();
@@ -43,7 +48,7 @@ const ViewFrame: FunctionComponent<Props> = ({ localize, toggleMenu, children, t
             onClick={handleDrawerOpen}
             edge="start"
           >
-            <MenuIcon />
+            {sessionStarted() && <MenuIcon />}
           </IconButton>
           <Typography variant="h6" style={{ flex: 1 }}>{title}</Typography>
           <LanguageSelector />

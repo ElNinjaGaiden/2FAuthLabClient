@@ -8,7 +8,7 @@ const defaultState: MenuState = {
   open: false
 }
 
-export default (state = defaultState, action: MenuAction): MenuState => {
+const reducer = (state = defaultState, action: MenuAction): MenuState => {
   switch (action.type) {
     case getType(menu.toggleMenu):
       return {
@@ -18,3 +18,5 @@ export default (state = defaultState, action: MenuAction): MenuState => {
       return state;
   }
 }
+
+export default reducer;
