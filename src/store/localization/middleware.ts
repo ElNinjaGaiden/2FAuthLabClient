@@ -33,11 +33,9 @@ export const fetchLanguagesMiddleware: Middleware<{}, LocalizationState> = ({ ge
 
   next(action);
 
-  if (action.type !== getType(localization.getLanguages)) {
+  if (action.type !== getType(localization.fetchLanguages.request)) {
     return;
   }
-
-  next(localization.fetchLanguages.request());
 
   try {
     const { data: { data } } = await axios({

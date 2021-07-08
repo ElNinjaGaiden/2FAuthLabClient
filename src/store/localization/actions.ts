@@ -15,4 +15,3 @@ export const fetchLanguages = createAsyncAction(
 
 export const updateLanguage = createAction('language/UPDATE_LANGUAGE', (languageId: string) => languageId)();
 
-export const getLanguages = createAction('languages/GET_LANGUAGES', () => {})();

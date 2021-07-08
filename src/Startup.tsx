@@ -9,7 +9,7 @@ const mapDispatchToProps = {
   updateLanguage: (languageId: string) =>
     actions.localization.updateLanguage(languageId),
   getLanguages: () =>
-    actions.localization.getLanguages()
+    actions.localization.fetchLanguages.request()
 };
 
 type Props = typeof mapDispatchToProps & {
