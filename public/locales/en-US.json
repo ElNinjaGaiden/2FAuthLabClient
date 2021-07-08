@@ -1,0 +1,15 @@
+{
+  "pages": {
+    "home": {
+      "title": "Home"
+    },
+    "view2": {
+      "title": "View 2"
+    }
+  },
+  "components": {
+    "mainMenu": {
+      "title": "Menu"
+    }
+  }
+}

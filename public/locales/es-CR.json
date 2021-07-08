@@ -1,0 +1,15 @@
+{
+  "pages": {
+    "home": {
+      "title": "Inicio"
+    },
+    "view2": {
+      "title": "Vista 2"
+    }
+  },
+  "components": {
+    "mainMenu": {
+      "title": "Menú"
+    }
+  }
+}
