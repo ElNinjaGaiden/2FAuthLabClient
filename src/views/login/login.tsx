@@ -15,7 +15,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import Alert from '@material-ui/lab/Alert';
 import ViewFrame from '../../components/viewFrame';
 import useStyles from './loginStyles';
-import authenticationStep1 from '../../services/session/authenticationStep1';
+import authenticate from '../../services/session/authenticate';
 import User from '../../models/user';
 
 const mapStateToProps = (state: RootState) => ({
@@ -43,7 +43,7 @@ const Login: FunctionComponent<Props> = ({ localize, updateUser, passwordVerifie
     setIsProcessing(true);
     setErrorMessage('');
     try {
-      const user = await authenticationStep1(userName, password);
+      const user = await authenticate(userName, password);
       updateUser(user);
       passwordVerified();
     } catch (ex) {

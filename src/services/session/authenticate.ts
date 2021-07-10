@@ -3,7 +3,7 @@ import User from '../../models/user';
 
 const { REACT_APP_API_BASE_URL: API_BASE_URL } = process.env;
 
-const authenticationStep1 = async (userName: string, password: string) : Promise<User> => {
+const authenticate = async (userName: string, password: string) : Promise<User> => {
     try {
         const url = `/api/users/authenticate`;
         const dataRequest = {
@@ -24,4 +24,4 @@ const authenticationStep1 = async (userName: string, password: string) : Promise
     }
 };
 
-export default authenticationStep1;
+export default authenticate;

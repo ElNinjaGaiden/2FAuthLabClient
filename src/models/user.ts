@@ -6,6 +6,7 @@ type User = {
     password?: string; 
     tmpSecret?: any;
     secret?: any;
+    twoFactorAuhtEnabled?: boolean;
 }
 
 export default User;

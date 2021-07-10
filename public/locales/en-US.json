@@ -38,7 +38,8 @@
       }
     },
     "home": {
-      "title": "Home"
+      "title": "Home",
+      "twoFactorAuhtEnabled": "2FactAuth enabled"
     },
     "view2": {
       "title": "View 2"
