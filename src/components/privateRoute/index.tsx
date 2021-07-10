@@ -21,7 +21,7 @@ const PrivateRoute: FunctionComponent<Props> = ({ component: Component, sessionS
                 sessionStarted ? (
                 <Component {...props} />
                 ) : (
-                <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
+                <Redirect to={{ pathname: '/login', state: { from: props.location.pathname } }} />
                 )
             }
         />

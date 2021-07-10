@@ -24,13 +24,21 @@ const mapDispatchToProps = {
   tokenVerificationSuccesful: () => actions.session.tokenVerificationSuccesful()
 };
 
-type Props = ReturnType<typeof mapStateToProps> & RouteComponentProps<{}> & typeof mapDispatchToProps;
+type Props = ReturnType<typeof mapStateToProps> & RouteComponentProps<{}, {}, { from: string }> & typeof mapDispatchToProps;
 
 const VerifyToken: FunctionComponent<Props> = ({ localize, user, history, tokenVerificationSuccesful }) => {
   const classes = useStyles();
   const [token, setToken] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
+  let redirectTo: string = '';
+  const { location } = history;
+  if(location && location.state) {
+    const { from } = location.state;
+    if(from) {
+      redirectTo = from;
+    }
+  }
 
   const onSubmit = async (e: any) => {
     e.preventDefault();
@@ -41,8 +49,7 @@ const VerifyToken: FunctionComponent<Props> = ({ localize, user, history, tokenV
         const verified = await validateTokenService(user._id, token);
         if (verified) {
           tokenVerificationSuccesful();
-          // TODO: check if there is an specific path to redirect
-          history.push('/');
+          history.push(redirectTo || '/');
         } else {
           setErrorMessage(localize('utils.invalidToken'));
         }

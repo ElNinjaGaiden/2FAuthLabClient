@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, withRouter, RouteComponentProps } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { RootState, selectors, actions } from '../../store';
 import Avatar from '@material-ui/core/Avatar';
@@ -29,14 +29,22 @@ const mapDispatchToProps = {
   passwordVerified: () => actions.session.passwordVerificationSuccesful()
 };
 
-type Props = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
+type Props = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps & RouteComponentProps<{}, {}, { from: string }>;
 
-const Login: FunctionComponent<Props> = ({ localize, updateUser, passwordVerified, user }) => {
+const Login: FunctionComponent<Props> = ({ localize, updateUser, passwordVerified, user, history }) => {
   const classes = useStyles();
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  let redirectTo;
+  const { location } = history;
+  if(location && location.state) {
+    const { from } = location.state;
+    if(from) {
+      redirectTo = from;
+    }
+  }
 
   const onSumbit = async (e: any) => {
     e.preventDefault();
@@ -57,7 +65,7 @@ const Login: FunctionComponent<Props> = ({ localize, updateUser, passwordVerifie
     <>
     {
       user ?
-      <Redirect to={{ pathname: user.tmpSecret ? '/login/activatetwofactor' : '/login/validatetoken' }} />
+      <Redirect to={{ pathname: user.tmpSecret ? '/login/activatetwofactor' : '/login/validatetoken', state: { from: redirectTo } }} />
       :
       <ViewFrame title={localize('pages.login.title')}>
         {isProcessing && <LinearProgress />}
@@ -127,8 +135,10 @@ const Login: FunctionComponent<Props> = ({ localize, updateUser, passwordVerifie
   );
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Login);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Login)
+);
 
