@@ -21,6 +21,22 @@
         "signIn": "Aldreay have an account? Sign In"
       }
     },
+    "activateTwoFactorAuth": {
+      "title": "Activate Two Factor Authentication",
+      "activateTwoFactorAuthCard": {
+        "header": "Scan the code on your preffered auth app",
+        "token": "Token",
+        "submitToken": "Verify Token"
+      }
+    },
+    "verifyToken": {
+      "title": "Verify Token",
+      "verifyTokenCard": {
+        "header": "Get a token from your auth app",
+        "token": "Token",
+        "submitToken": "Verify"
+      }
+    },
     "home": {
       "title": "Home"
     },
@@ -32,5 +48,8 @@
     "mainMenu": {
       "title": "Menu"
     }
+  },
+  "utils": {
+    "invalidToken": "Invalid Token"
   }
 }

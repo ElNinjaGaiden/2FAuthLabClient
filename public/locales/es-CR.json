@@ -21,6 +21,22 @@
         "signIn": "¿Ya tenés cuenta? Inicia sesión"
       }
     },
+    "activateTwoFactorAuth": {
+      "title": "Activa Autenticación de Doble Factor",
+      "activateTwoFactorAuthCard": {
+        "header": "Escanee el código en su aplicación de autenticación preferida",
+        "token": "Token",
+        "submitToken": "Validar Token"
+      }
+    },
+    "verifyToken": {
+      "title": "Verificar Token",
+      "verifyTokenCard": {
+        "header": "Usa tú applicación de authenticación para obtener un token",
+        "token": "Token",
+        "submitToken": "Verificar"
+      }
+    },
     "home": {
       "title": "Inicio"
     },
@@ -32,5 +48,8 @@
     "mainMenu": {
       "title": "Menú"
     }
+  },
+  "utils": {
+    "invalidToken": "Token Inválido"
   }
 }

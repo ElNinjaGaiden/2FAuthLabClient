@@ -60,7 +60,7 @@ const LanguageSelector: FunctionComponent<Props> = ({
             >
                 {
                     availableUnselectedLanguages().map(language => (
-                        <MenuItem onClick={() => handleLanguageClick(language)}>{language.name}</MenuItem>
+                        <MenuItem key={language.id} onClick={() => handleLanguageClick(language)}>{language.name}</MenuItem>
                     ))
                 }
             </Menu>

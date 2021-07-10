@@ -20,12 +20,12 @@ const View2: FunctionComponent<Props> = ({ localize }) => {
 
   const data: ListItemModel[] = [
     {
-      id: '1',
+      _id: '1',
       primary: 'Item 1 on page 2',
       secondary: '123456'
     },
     {
-      id: '2',
+      _id: '2',
       primary: 'Item 2 on page 2',
       secondary: '99887766'
     }
@@ -35,7 +35,7 @@ const View2: FunctionComponent<Props> = ({ localize }) => {
       <List>
         {data &&
           data.map(l => (
-            <ListItem key={l.id}>
+            <ListItem key={l._id}>
               <ListItemAvatar>
                 <Avatar alt="logo" />
               </ListItemAvatar>

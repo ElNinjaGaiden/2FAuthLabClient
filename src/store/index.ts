@@ -4,12 +4,6 @@ import rootReducer from './root-reducer';
 
 // Middlewares
 import { fetchLanguageMiddleware } from './localization/middleware';
-import {
-  registerUserMiddleware,
-  verifySecretMiddleware,
-  attemptAuthenticateFactor1Middleware,
-  attemptAuthenticateFactor2Middleware
-} from './session/middleware';
 
 // Selectors
 import * as localizationSelectors from './localization/selectors';
@@ -35,11 +29,7 @@ export const actions = {
 }
 
 export const middlewares: Middleware[] = [
-  fetchLanguageMiddleware,
-  registerUserMiddleware,
-  verifySecretMiddleware,
-  attemptAuthenticateFactor1Middleware,
-  attemptAuthenticateFactor2Middleware
+  fetchLanguageMiddleware
 ]
 
 export type RootState = StateType<typeof rootReducer>;

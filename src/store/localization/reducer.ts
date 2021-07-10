@@ -26,7 +26,7 @@ const reducer = (state = defaultState, action: LocalizationAction): Localization
         ...state,
         languageId: action.payload
       }
-    case getType(localization.fetchLanguages.success):
+    case getType(localization.updateLanguages):
       return {
         ...state,
         languages: action.payload

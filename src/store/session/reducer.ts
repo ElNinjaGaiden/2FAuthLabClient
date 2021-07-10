@@ -6,33 +6,37 @@ export type SessionAction = ActionType<typeof session>;
 
 const defaultState: SessionState = {
   user: undefined,
-  authenticationFactor1: false,
-  authenticationFactor2: false
+  passwordVerified: false,
+  tokenVerified: false
 }
 
 const reducer = (state = defaultState, action: SessionAction): SessionState => {
   switch (action.type) {
-    case getType(session.registerUser.success):
+    // case getType(session.registerUser.success):
+    //   return {
+    //     ...state,
+    //     authenticationFactor1: true,
+    //     user: action.payload
+    //   }
+    // case getType(session.verifySecret.success):
+    //   return {
+    //     ...state,
+    //     authenticationFactor2: true
+    //   }
+    case getType(session.updateUser):
       return {
         ...state,
-        authenticationFactor1: true,
         user: action.payload
       }
-    case getType(session.verifySecret.success):
+    case getType(session.passwordVerificationSuccesful):
       return {
         ...state,
-        authenticationFactor2: true
+        passwordVerified: true
       }
-    case getType(session.attemptAuthenticateFactor1.success):
+    case getType(session.tokenVerificationSuccesful):
       return {
         ...state,
-        user: action.payload,
-        authenticationFactor1: true
-      }
-    case getType(session.attemptAuthenticateFactor2.success):
-      return {
-        ...state,
-        authenticationFactor2: true
+        tokenVerified: true
       }
     default:
       return state;

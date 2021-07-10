@@ -1,12 +1,11 @@
 import { createStore, applyMiddleware, compose, Middleware } from 'redux';
-import { fetchLanguageMiddleware, fetchLanguagesMiddleware } from './localization/middleware';
+import { fetchLanguageMiddleware } from './localization/middleware';
 import rootReducer from './root-reducer';
 
 const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const middlewares: Middleware[] = [
-  fetchLanguageMiddleware,
-  fetchLanguagesMiddleware
+  fetchLanguageMiddleware
 ];
 
 function configureStore(initialState?: {}) {

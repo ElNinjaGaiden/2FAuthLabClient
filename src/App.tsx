@@ -14,6 +14,8 @@ import PrivateRoute from './components/privateRoute';
 
 // Views
 import Login from './views/login/login';
+import ActivateTwoFactorAuth from './views/login/activateTwoFactorAuth';
+import ValidateToken from './views/login/validateToken';
 import SignUp from './views/signUp/signUp';
 import Home from './views/home/home';
 import View2 from './views/view2';
@@ -29,10 +31,12 @@ function App() {
           <div id="app">
             <Drawer />
             <Switch>
-              <Route path="/login" component={Login} />
+              <Route path="/login" exact component={Login} />
+              <Route path='/login/activatetwofactor' component={ActivateTwoFactorAuth} />
+              <Route path='/login/validatetoken' component={ValidateToken} />
               <Route path="/signup" component={SignUp} />
-              <PrivateRoute path="/" exact component={Home} />
               <PrivateRoute path="/view2" component={View2} />
+              <PrivateRoute path="/" exact component={Home} />
             </Switch>
           </div>
         </Router>

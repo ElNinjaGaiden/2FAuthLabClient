@@ -1,4 +1,4 @@
-import React, { FunctionComponent, Component } from 'react';
+import React, { FunctionComponent } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Route } from 'react-router-dom';
 import { RootState, selectors } from '../../store';
@@ -13,7 +13,7 @@ type Props = ReturnType<typeof mapStateToProps> & {
     exact?: boolean
 };
 
-const PrivateRoute: FunctionComponent<Props> = ({ component, sessionStarted, ...rest }) => {
+const PrivateRoute: FunctionComponent<Props> = ({ component: Component, sessionStarted, ...rest }) => {
     return (
         <Route
             {...rest}

@@ -40,12 +40,12 @@ const useStyles = makeStyles({
 
 const menuItems: ListItemModel[] = [
     {
-      id: '1',
+      _id: '1',
       localizationKey: 'pages.home.title',
       route: '/'
     },
     {
-      id: '2',
+      _id: '2',
       localizationKey: 'pages.view2.title',
       route: '/view2'
     }
@@ -85,7 +85,7 @@ const Drawer: FunctionComponent<Props> = ({
       <Divider />
       <List className={classes.list}>
         {menuItems.map(l => (
-          <ListItem button key={l.id} onClick={e => onMenuItemClick(e, l)}>
+          <ListItem button key={l._id} onClick={e => onMenuItemClick(e, l)}>
             <ListItemText primary={localize(l.localizationKey || '')} />
           </ListItem>
         ))}

@@ -1,8 +1,11 @@
 type User = {
-    id: string;
+    _id: string;
+    firstName: string,
+    lastName: string;
     userName: string;
-    tmpSecret?: object;
-    secrect?: object;
+    password?: string; 
+    tmpSecret?: any;
+    secret?: any;
 }
 
 export default User;
