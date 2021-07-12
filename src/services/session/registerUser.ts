@@ -5,7 +5,7 @@ const { REACT_APP_API_BASE_URL: API_BASE_URL } = process.env;
 
 const registerUser = async (user: User) : Promise<User> => {
     try {
-        const url = `/api/users/register`;
+        const url = `/api/access/register`;
         const dataRequest = user;
         const { data: { data } } = await axios({
             baseURL: API_BASE_URL,

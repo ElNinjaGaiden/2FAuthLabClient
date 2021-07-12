@@ -1,4 +1,5 @@
 import React, { FunctionComponent, useState } from 'react';
+import { useCookies } from 'react-cookie';
 import { Redirect, withRouter, RouteComponentProps } from 'react-router-dom';
 import { RootState, selectors, actions } from '../../store';
 import { connect } from 'react-redux';
@@ -32,6 +33,7 @@ const ActivateTwoFactorAuth: FunctionComponent<Props> = ({ user, localize, histo
   const [token, setToken] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
+  const [, setCookie] = useCookies();
   let redirectTo: string = '';
   const { location } = history;
   if(location && location.state) {
@@ -47,9 +49,11 @@ const ActivateTwoFactorAuth: FunctionComponent<Props> = ({ user, localize, histo
     setErrorMessage('');
     try {
       if (user) {
-        const validated = await verifySecretService(user._id, token);
-        if (validated) {
+        const { success: validated, accessToken } = await verifySecretService(user._id, token);
+        if (validated && accessToken) {
+          const { jwt, expirationDate } = accessToken;
           tokenVerificationSuccesful();
+          setCookie('accessToken', { jwt, userId: user._id }, { path: '/', expires: expirationDate });
           history.push(redirectTo || '/');
         } else {
           setErrorMessage(localize('utils.invalidToken'));

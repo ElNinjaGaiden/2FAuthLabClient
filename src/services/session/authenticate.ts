@@ -5,7 +5,7 @@ const { REACT_APP_API_BASE_URL: API_BASE_URL } = process.env;
 
 const authenticate = async (userName: string, password: string) : Promise<User> => {
     try {
-        const url = `/api/users/authenticate`;
+        const url = `/api/access/authenticate`;
         const dataRequest = {
             userName,
             password

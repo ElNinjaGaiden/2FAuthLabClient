@@ -1,5 +1,6 @@
 import React, { FunctionComponent, useState } from 'react';
 import { Redirect, withRouter, RouteComponentProps } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 import { RootState, selectors, actions } from '../../store';
 import { connect } from 'react-redux';
 import ViewFrame from '../../components/viewFrame';
@@ -31,6 +32,7 @@ const VerifyToken: FunctionComponent<Props> = ({ localize, user, history, tokenV
   const [token, setToken] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
+  const [, setCookie] = useCookies();
   let redirectTo: string = '';
   const { location } = history;
   if(location && location.state) {
@@ -46,9 +48,11 @@ const VerifyToken: FunctionComponent<Props> = ({ localize, user, history, tokenV
     setErrorMessage('');
     try {
       if (user) {
-        const verified = await validateTokenService(user._id, token);
-        if (verified) {
+        const { success: verified, accessToken } = await validateTokenService(user._id, token);
+        if (verified && accessToken) {
+          const { jwt, expirationDate } = accessToken;
           tokenVerificationSuccesful();
+          setCookie('accessToken', { jwt, userId: user._id }, { path: '/', expires: expirationDate });
           history.push(redirectTo || '/');
         } else {
           setErrorMessage(localize('utils.invalidToken'));

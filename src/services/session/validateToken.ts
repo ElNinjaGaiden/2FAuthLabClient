@@ -1,21 +1,26 @@
 import axios from 'axios';
+import AccessToken from '../../models/accessToken';
 
 const { REACT_APP_API_BASE_URL: API_BASE_URL } = process.env;
 
-const validateToken = async (userId: string, token: string) : Promise<boolean> => {
+const validateToken = async (userId: string, token: string) : Promise<{ success: boolean, accessToken?: AccessToken }> => {
     try {
-        const url = `/api/users/validateToken`;
+        const url = `/api/access/validateToken`;
         const dataRequest = {
             userId,
             token
         };
-        const { data: { success } } = await axios({
+        const { data: { success, accessToken } } = await axios({
             baseURL: API_BASE_URL,
             url,
             method: 'POST',
             data: dataRequest
         });
-        return success;
+        const response: { success: boolean, accessToken?: AccessToken } = {
+            success,
+            accessToken: success && { jwt: accessToken.jwt, expirationDate: new Date(accessToken.expirationDate) }
+        };
+        return response;
     } catch (ex) {
         const errorMessage = ex.response && ex.response.data && ex.response.data.message ? ex.response.data.message : ex.message;
         throw new Error(errorMessage);
