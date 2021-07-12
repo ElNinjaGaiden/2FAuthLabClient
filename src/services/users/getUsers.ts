@@ -1,5 +1,6 @@
 import axios from 'axios';
 import User from '../../models/user';
+import headers from '../headers';
 
 const { REACT_APP_API_BASE_URL: API_BASE_URL } = process.env;
 
@@ -9,7 +10,8 @@ const getUsers = async () : Promise<User[]> => {
         const { data: { data } } = await axios({
             baseURL: API_BASE_URL,
             url,
-            method: 'GET'
+            method: 'GET',
+            headers: headers()
         });
         const users: User[] = data;
         return users;
